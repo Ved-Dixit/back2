@@ -305,19 +305,21 @@ async def main(data : DisasterData):
         download_model1()
         model1 = joblib.load(model1_link)
 
+        damage_value=[]
         # calculating damage
-        damage = []
-        for ages, floor in zip(age,floors):
+        for nam, ages, floor in zip(Name,age,floors):
             def predict_damage(ages, floor, magnitude):
+                damage=[]
                 sample_input = np.array([[ages, floor, magnitude]])
                 predicted_damage = model1.predict(sample_input)
-                return int(predicted_damage)
-            damage.append({"building_name":Name ,"estimated_damage":predict_damage(ages, floor, magnitude)})
-        return damage
+                damage.append({"building_name":nam ,"estimated_damage":predicted_damage})
+                return damage
+            damage_value.append(predict_damage(ages, floor, magnitude))
+        return damage_value
     if input1=="Earthquake":
-        damgae_value=e1()
+        dv=e1()
         response = {
-            "building_wise_impact": damgae_value,
+            "building_wise_impact": dv,
             "total_damage_estimation": total_damage,
             "estimated_affected_population": affected_population,
         }
