@@ -312,7 +312,8 @@ async def main(data : DisasterData):
                 damage=[]
                 sample_input = np.array([[ages, floor, magnitude]])
                 predicted_damage = model1.predict(sample_input)
-                damage.append({"building_name":nam ,"estimated_damage":predicted_damage})
+                predicted_damage_value=float(predicted_damage[0])
+                damage.append({"building_name":nam ,"estimated_damage":predicted_damage_value})
                 return damage
             damage_value.append(predict_damage(ages, floor, magnitude))
         return damage_value
