@@ -287,7 +287,7 @@ async def main(data : DisasterData):
     def e1():
         # getting model
         global model1
-        model_path = "https://raw.githubusercontent.com/Ved-Dixit/back2/main/data/earthquake_damage_model.pkl"
+        model_path = "https://github.com/Ved-Dixit/back2/releases/download/ved/earthquake_damage_model.pkl"
         model1 = joblib.load(model_path)
 
         # calculating damage
