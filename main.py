@@ -288,7 +288,22 @@ async def main(data : DisasterData):
         # getting model
         global model1
         model_path = "https://github.com/Ved-Dixit/back2/releases/download/ved/earthquake_damage_model.pkl"
-        model1 = joblib.load(model_path)
+        model1_link = "earthquake_damage_model.pkl"
+        def download_model1():
+            """Downloads the model file if it doesn't exist."""
+            if not os.path.exists(model1_link):
+                print("📥 Downloading the model...")
+                response = requests.get(model1_path, stream=True)
+                if response.status_code == 200:
+                    with open(model1_link, "wb") as f:
+                        for chunk in response.iter_content(chunk_size=1024):
+                            f.write(chunk)
+                else:
+                    raise Exception(f"❌ Failed to download model: {response.status_code}")
+
+# Call function to download the model
+        download_model1()
+        model1 = joblib.load(model_link)
 
         # calculating damage
         damage = []
