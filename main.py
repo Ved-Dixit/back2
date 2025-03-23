@@ -317,10 +317,15 @@ async def main(data : DisasterData):
         damage_value.append(zip(damage,Name))
     if input1=="Earthquake":
         damgae_value=e1()
-    
-    response = {
-        "building_wise_impact": damgae_value,
-        "total_damage_estimation": total_damage,
-        "estimated_affected_population": affected_population,
-    }
+        response = {
+            "building_wise_impact": damgae_value,
+            "total_damage_estimation": total_damage,
+            "estimated_affected_population": affected_population,
+        }
+    else:
+        response = {
+            "total_damage_estimation": total_damage,
+            "estimated_affected_population": affected_population,
+        }
+
     return response
