@@ -31,8 +31,8 @@ async def main(data : DisasterData):
     input1 = data.disaster_type
     input2 = data.magnitude
     # Load dataset
-    df = pd.read_csv("updated_disaster_data-2.csv")
-    df1 = pd.read_csv("cleaned_table.csv")
+    df = pd.read_csv("https://github.com/Ved-Dixit/back2/tree/main/data/updated_disaster_data-2.csv")
+    df1 = pd.read_csv("https://github.com/Ved-Dixit/back2/tree/main/data/cleaned_table.csv")
     # Entering population and infrastructure rating as integer
     population = data.population
     infrastructure=data.infrastructure
@@ -287,7 +287,7 @@ async def main(data : DisasterData):
     def e1():
         # getting model
         global model1
-        model_path = "earthquake_damage_model.pkl"
+        model_path = "https://github.com/Ved-Dixit/back2/tree/main/data/earthquake_damage_model.pkl"
         model1 = joblib.load(model_path)
 
         # calculating damage
