@@ -31,7 +31,7 @@ async def main(data : DisasterData):
     input1 = data.disaster_type
     input2 = data.magnitude
     # Load dataset
-    df = pd.read_csv("https://github.com/Ved-Dixit/back2/blob/main/data/updated_disaster_data-2.csv")
+    df = pd.read_csv("https://raw.githubusercontent.com/Ved-Dixit/back2/main/data/updated_disaster_data-2.csv")
     df1 = pd.read_csv("https://github.com/Ved-Dixit/back2/blob/main/data/cleaned_table.csv")
     # Entering population and infrastructure rating as integer
     population = data.population
