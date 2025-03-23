@@ -271,7 +271,7 @@ async def main(data : DisasterData):
     df1['Building Age'] = current_year - df1['Year Built']
     a=df1.loc[(df1['Status']=="built"),"Building Age"]
     f=df1.loc[(df1['Status']=="built"),"Floors"]
-    b=df1.loc[(df1['Status']=="built"),"Name"]
+    b=df1.loc[(df1['Status']=="built"),"Building Name"]
     age=[]
     floors=[]
     Name=[]
