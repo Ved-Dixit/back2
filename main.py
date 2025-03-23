@@ -284,9 +284,9 @@ async def main(data : DisasterData):
         Name.append(name)
     magnitude=input2
     model1=None
-    damage_value=[]
     def e1():
         # getting model
+        damage_value=[]
         global model1
         model1_path = "https://github.com/Ved-Dixit/back2/releases/download/ved/earthquake_damage_model.pkl"
         model1_link = "earthquake_damage_model.pkl"
@@ -315,6 +315,7 @@ async def main(data : DisasterData):
                 return predicted_damage
             damage.append(predict_damage(ages, floor, magnitude))
         damage_value.append(zip(damage,Name))
+        return damage_value
     if input1=="Earthquake":
         damgae_value=e1()
         response = {
