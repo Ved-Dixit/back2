@@ -8,6 +8,7 @@ import joblib
 import os
 import math
 import warnings
+import requests
 from fastapi import FastAPI
 from pydantic import BaseModel
 import random
