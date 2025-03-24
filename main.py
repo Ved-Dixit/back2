@@ -54,10 +54,10 @@ async def main(data : DisasterData):
     def data1():
         if "Storm" in group:
             storm = group["Storm"]
-            value = input2 / 63  # Scaling factor
+            value = input2 / 10  # Scaling factor
         
             for i in storm["Magnitude"]:
-                if math.isclose(i / 63, value, rel_tol=1e-5):  # Avoid floating-point errors
+                if math.isclose(i / 10, value, rel_tol=1e-5):  # Avoid floating-point errors
                     initialm.append(i)
 
                     # Extract damage
