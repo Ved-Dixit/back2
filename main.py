@@ -154,85 +154,12 @@ async def main(data : DisasterData):
                     infra = df.loc[(df["Disaster Type"] == "Flood") & (df["Magnitude"] == i), "Infrastructure Value (M USD)"]
                     if not infra.empty:
                         initialv.append(infra.values[0])
-
-    def data4():
-        if "Hurricane" in group:
-            hurricane = group["Hurricane"]
-            value = input2 / 10  # Scaling factor
-            for i in hurricane["Magnitude"]:
-                if math.isclose(i / 10, value, rel_tol=1e-5):  # Avoid floating-point errors
-                    initialm.append(i)
-                    # Extract damage
-                    damage = df.loc[(df["Disaster Type"] == "Hurricane") & (df["Magnitude"] == i), "Total Damage (000 US$)"]
-                    if not damage.empty:
-                        initiald.append(damage.values[0])
-
-                    # Extract city
-                    city = df.loc[(df["Disaster Type"] == "Hurricane") & (df["Magnitude"] == i), "Location"]
-                    if city.values[0]!= "unknown":
-                        initialc.append(city.values[0])
-
-                    # Extract start year
-                    time = df.loc[(df["Disaster Type"] == "Hurricane") & (df["Magnitude"] == i), "Start Year"]
-                    if not time.empty:
-                        initialt.append(time.values[0])
-                    # Extract casualties
-                    casualties = df.loc[(df["Disaster Type"] == "Hurricane") & (df["Magnitude"] == i), "No. Affected"]
-                    if not casualties.empty:
-                        initiala.append(casualties.values[0])
-                    # Extract population
-                    pop = df.loc[(df["Disaster Type"] == "Hurricane") & (df["Magnitude"] == i), "Population (000s)"]
-                    if not pop.empty:
-                        initialp.append(pop.values[0]*1000)
-                    # Extract infrastructure
-                    infra = df.loc[(df["Disaster Type"] == "Hurricane") & (df["Magnitude"] == i), "Infrastructure Value (M USD)"]
-                    if not infra.empty:
-                        initialv.append(infra.values[0])
-
-    def data5():
-        if "Typhoon" in group:
-            typhoon = group["Typhoon"]
-            value = input2 / 10  # Scaling factor
-            for i in typhoon["Magnitude"]:
-                if math.isclose(i / 10, value, rel_tol=1e-5):  # Avoid floating-point errors
-                    initialm.append(i)
-                    # Extract damage
-                    damage = df.loc[(df["Disaster Type"] == "Typhoon") & (df["Magnitude"] == i), "Total Damage (000 US$)"]
-                    if not damage.empty:
-                        initiald.append(damage.values[0])
-
-                    # Extract city
-                    city = df.loc[(df["Disaster Type"] == "Typhoon") & (df["Magnitude"] == i), "Location"]
-                    if city.values[0]!= "unknown":
-                        initialc.append(city.values[0])
-
-                    # Extract start year
-                    time = df.loc[(df["Disaster Type"] == "Typhoon") & (df["Magnitude"] == i), "Start Year"]
-                    if not time.empty:
-                        initialt.append(time.values[0])
-                    # Extract casualties
-                    casualties = df.loc[(df["Disaster Type"] == "Typhoon") & (df["Magnitude"] == i), "No. Affected"]
-                    if not casualties.empty:
-                        initiala.append(casualties.values[0])
-                    # Extract population
-                    pop = df.loc[(df["Disaster Type"] == "Typhoon") & (df["Magnitude"] == i), "Population (000s)"]
-                    if not pop.empty:
-                        initialp.append(pop.values[0]*1000)
-                    # Extract infrastructure
-                    infra = df.loc[(df["Disaster Type"] == "Typhoon") & (df["Magnitude"] == i), "Infrastructure Value (M USD)"]
-                    if not infra.empty:
-                        initialv.append(infra.values[0])
-                    
     if input1 == "Storm":
         data1()
     elif input1 == "Earthquake":
         data2()
     elif input1 == "Flood":
         data3()
-    elif input1 == "Hurricane":
-        data4()
-    elif input1 == "Typhoon":
-        data5()
 
     if initialm and initiald and initialv:  #To Ensure there's data before training
         initialm1 = np.array(initialm).reshape(-1, 1)
