@@ -283,10 +283,7 @@ async def main(data : DisasterData):
     for name in b:
         Name.append(name)
     magnitude=input2
-    model1=None
     def e1():
-        # getting model
-        global model1
         model1_path = "https://github.com/Ved-Dixit/back2/releases/download/ved/earthquake_damage_model.pkl"
         model1_link = "earthquake_damage_model.pkl"
         def download_model1():
@@ -307,20 +304,31 @@ async def main(data : DisasterData):
 
         damage_value=[]
         # calculating damage
-        for nam, ages, floor in zip(Name,age,floors):
+        for value in zip(Name,age,floors):
+            nam=value[0]
+            ages=value[1]
+            floor=value[2]
             def predict_damage(ages, floor, magnitude):
-                damage=[]
-                sample_input = np.array([[ages, floor, magnitude]])
-                predicted_damage = model1.predict(sample_input)
-                predicted_damage_value=float(predicted_damage[0])
-                damage.append({"building_name":nam ,"estimated_damage":predicted_damage_value})
-                return damage
+                if nam != "":
+                    if ages !="":
+                        if floor!="":         
+                            damage=[]
+                            sample_input=[[ages, floor, magnitude]]
+                            predicted_damage = model1.predict(sample_input)
+                            predicted_damage_value=float(predicted_damage[0])
+                            damage.append({"building_name":nam ,"estimated_damage":predicted_damage_value})
+                            return damage
             damage_value.append(predict_damage(ages, floor, magnitude))
         return damage_value
     if input1=="Earthquake":
+        d=[]
         dv=e1()
+        for n in dv:
+            for i in n:
+                m=list(i.items())
+                d.append(m)
         response = {
-            "building_wise_impact": dv,
+            "building_wise_impact": d,
             "total_damage_estimation": total_damage,
             "estimated_affected_population": affected_population,
         }
