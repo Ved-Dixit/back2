@@ -132,9 +132,9 @@ async def main(data : DisasterData):
     def data3():
         if "Flood" in group:
             flood = group["Flood"]
-            value = input2 / 10  # Scaling factor
+            value = input2   # Scaling factor
             for i in flood["Magnitude"]:
-                if math.isclose(i / 10, value, rel_tol=1e-5):  # Avoid floating-point errors
+                if math.isclose(i , value, rel_tol=1e-5):  # Avoid floating-point errors
                     initialm.append(i)
                     # Extract damage
                     damage = df.loc[(df["Disaster Type"] == "Flood") & (df["Magnitude"] == i), "Total Damage (000 US$)"]
