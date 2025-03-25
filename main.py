@@ -168,7 +168,7 @@ async def main(data : DisasterData):
         data2()
     elif input1 == "Flood":
         data3()
-    y=68500
+    y=[68500]
 
     if initialm and initiald and initialv:  #To Ensure there's data before training
         initialm1 = np.array(initialm).reshape(-1, 1)
