@@ -10,6 +10,7 @@ import math
 import warnings
 import requests
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 import random
 
@@ -20,6 +21,14 @@ warnings.filterwarnings('ignore')
 # add frontend path
 app = FastAPI()
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Allow all origins
+    allow_credentials=True,
+    allow_methods=["*"],  # Allow all HTTP methods
+    allow_headers=["*"],  # Allow all headers
+)
+
 class DisasterData(BaseModel):
     disaster_type: str
     magnitude: float
@@ -27,7 +36,6 @@ class DisasterData(BaseModel):
     infrastructure: float
 
 @app.post("/")
-
 async def main(data : DisasterData):
     input1 = data.disaster_type
     input2 = data.magnitude
